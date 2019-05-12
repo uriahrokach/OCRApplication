@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/selectButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="19dp"
+        android:text="Select"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintStart_toStartOf="@+id/submitButton"
+        app:layout_constraintTop_toBottomOf="@+id/textImage" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toTopOf="@+id/console"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectButton" />
+
+    <ImageView
+        android:id="@+id/textImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="79dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="86dp"
+        app:layout_constraintBottom_toTopOf="@+id/selectButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/console"
+        android:layout_width="362dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="43dp"
+        android:text="Please select an image"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitButton" />
+
+</android.support.constraint.ConstraintLayout>
