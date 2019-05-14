@@ -1,6 +1,7 @@
 package com.example.ocrapplication;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,15 +28,18 @@ public class ServerTask extends AsyncTask<Void, String, Void> {
     protected Void doInBackground(Void... voids) {
         try {
             socket = new Socket(IP, port);
-            publishProgress("");
+            //publishProgress("");
+            Log.d("async","I got here. Socket is: " + socket.toString());
             BufferedReader buffer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String line = buffer.readLine();
-            while(line != null){
+            while (line != null) {
+                Log.d("async", "got a message: "+ line);
                 publishProgress(line);
                 line = buffer.readLine();
             }
 
         } catch (IOException e) {
+            Log.d("async","an error accured: "+ e.toString());
             e.printStackTrace();
         }finally {
             try {
@@ -66,4 +70,5 @@ public class ServerTask extends AsyncTask<Void, String, Void> {
         super.onPostExecute(aVoid);
         main.writeConsole("Connection ended");
     }
+
 }

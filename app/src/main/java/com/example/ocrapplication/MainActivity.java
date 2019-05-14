@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,7 +16,7 @@ import java.io.PrintWriter;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String IP = "79.182.25.149";
+    public static String IP = "10.0.0.17";
     public static int PORT = 8080;
     public static String EXTRA_TEXT = "com.example.ocrapplication.EXTRA_TEXT";
 
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         this.console = findViewById(UILayout.TEXTS.CONSOLE);
         this.textImage = findViewById(UILayout.IMAGES.TEXT_IMAGE);
 
+        //Log.d("MainActivity", "this works?");
+
         this.image = ((BitmapDrawable) this.textImage.getDrawable()).getBitmap();
         selectHandler = new SelectButtonHandler(this, selectBtn, textImage, console);
 
@@ -50,11 +53,15 @@ public class MainActivity extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectBtn.setActivated(false);
+                submitBtn.setActivated(false);
+                writeConsole("sending message...");
                 Thread t = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         writer.println(selectHandler.getImageUri());
                         writer.flush();
+
                     }
                 });
             }
@@ -69,12 +76,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void useData(String value) {
-        Intent intent = new Intent(this, null);
+        selectBtn.setActivated(true);
+        submitBtn.setActivated(true);
+        Intent intent = new Intent(this, AnswerActivity.class);
         intent.putExtra(EXTRA_TEXT, value);
         startActivity(intent);
     }
 
-    public void writeConsole(String connection_ended) {
+    public void writeConsole(String message) {
+        this.console.setText(message);
     }
 
     public PrintWriter getWriter() {
