@@ -71,4 +71,8 @@ public class ServerTask extends AsyncTask<Void, String, Void> {
         main.writeConsole("Connection ended");
     }
 
+    public Socket getSocket(){
+        return this.socket;
+    }
+
 }

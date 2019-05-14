@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
                 selectBtn.setActivated(false);
                 submitBtn.setActivated(false);
                 writeConsole("sending message...");
+
+                if(writer == null){
+                    try {
+                        writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(task.getSocket().getOutputStream())));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
                 Thread t = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -64,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+                t.start();
             }
         });
     }
